@@ -7,7 +7,6 @@ on:
       - main
     paths:
       - "**/*.tf"
-      - .github/workflows/release.yml
 
 jobs:
   release:
