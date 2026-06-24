@@ -33,15 +33,16 @@ jobs:
           LATEST=$(git tag --list "${BASE}-*" | sort -V | tail -1)
 
           if [ -z "$LATEST" ]; then
-            NEW_TAG="${BASE}-0"
             PREV_TAG=$(git tag --list "*.*.*-*" | sort -V | tail -1)
+            NEW_TAG="${BASE}-0"
           else
             N="${LATEST##*-}"
-            NEW_TAG="${BASE}-$((N + 1))"
             PREV_TAG="${LATEST}"
+            NEW_TAG="${BASE}-$((N + 1))"
           fi
 
-          echo "prev_tag=${PREV_TAG},new_tag=${NEW_TAG}" >> $GITHUB_OUTPUT
+          echo "prev_tag=${PREV_TAG}" >> $GITHUB_OUTPUT
+          echo "new_tag=${NEW_TAG}" >> $GITHUB_OUTPUT
 
       - name: Create release
         uses: softprops/action-gh-release@718ea10b132b3b2eba29c1007bb80653f286566b # v3.0.1
