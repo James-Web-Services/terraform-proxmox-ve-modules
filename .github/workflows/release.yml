@@ -1,0 +1,45 @@
+name: Release
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "**/*.tf"
+      - .github/workflows/release.yml
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-tags: true
+
+      - name: Compute CalVer tag
+        id: calver
+        run: |
+          DATE=$(date -u +"%Y.%m.%d")
+          BASE="v${DATE}"
+
+          # Get the latest tag that matches the base version (e.g. v2026.06.23-0)
+          LATEST=$(git tag --list "${BASE}-*" | sort -V | tail -1)
+
+          if [ -z "$LATEST" ]; then
+            TAG="${BASE}-0"
+          else
+            N="${LATEST##*-}"
+            TAG="${BASE}-$((N + 1))"
+          fi
+
+          echo "tag=${TAG}" >> $GITHUB_OUTPUT
+
+      - name: Create release
+        uses: softprops/action-gh-release@718ea10b132b3b2eba29c1007bb80653f286566b # v3.0.1
+        with:
+          tag_name: ${{ steps.calver.outputs.tag }}
+          generate_release_notes: true
