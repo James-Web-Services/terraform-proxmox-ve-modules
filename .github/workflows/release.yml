@@ -51,4 +51,5 @@ jobs:
         uses: softprops/action-gh-release@718ea10b132b3b2eba29c1007bb80653f286566b # v3.0.1
         with:
           tag_name: ${{ steps.calver.outputs.new_tag }}
+          previous_tag: ${{ steps.calver.outputs.prev_tag }}
           generate_release_notes: true
