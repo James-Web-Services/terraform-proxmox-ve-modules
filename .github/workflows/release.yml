@@ -33,16 +33,19 @@ jobs:
           LATEST=$(git tag --list "${BASE}-*" | sort -V | tail -1)
 
           if [ -z "$LATEST" ]; then
-            TAG="${BASE}-0"
+            NEW_TAG="${BASE}-0"
+            PREV_TAG=$(git tag --list "*.*.*-*" | sort -V | tail -1)
           else
             N="${LATEST##*-}"
-            TAG="${BASE}-$((N + 1))"
+            NEW_TAG="${BASE}-$((N + 1))"
+            PREV_TAG="${LATEST}"
           fi
 
-          echo "tag=${TAG}" >> $GITHUB_OUTPUT
+          echo "prev_tag=${PREV_TAG},new_tag=${NEW_TAG}" >> $GITHUB_OUTPUT
 
       - name: Create release
         uses: softprops/action-gh-release@718ea10b132b3b2eba29c1007bb80653f286566b # v3.0.1
         with:
-          tag_name: ${{ steps.calver.outputs.tag }}
+          tag_name: ${{ steps.calver.outputs.new_tag }}
+          previous_tag: ${{ steps.calver.outputs.prev_tag }}
           generate_release_notes: true
