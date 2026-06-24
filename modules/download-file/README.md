@@ -19,7 +19,7 @@ No modules.
 
 | Name | Type |
 | ---- | ---- |
-| [proxmox_virtual_environment_download_file.this](https://registry.terraform.io/providers/bpg/proxmox/0.111.0/docs/resources/virtual_environment_download_file) | resource |
+| [proxmox_download_file.this](https://registry.terraform.io/providers/bpg/proxmox/0.111.0/docs/resources/download_file) | resource |
 
 ## Inputs
 
