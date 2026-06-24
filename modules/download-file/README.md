@@ -3,13 +3,13 @@
 
 | Name | Version |
 | ---- | ------- |
-| <a name="requirement_proxmox"></a> [proxmox](#requirement\_proxmox) | 0.100.0 |
+| <a name="requirement_proxmox"></a> [proxmox](#requirement\_proxmox) | 0.111.0 |
 
 ## Providers
 
 | Name | Version |
 | ---- | ------- |
-| <a name="provider_proxmox"></a> [proxmox](#provider\_proxmox) | 0.100.0 |
+| <a name="provider_proxmox"></a> [proxmox](#provider\_proxmox) | 0.111.0 |
 
 ## Modules
 
@@ -19,7 +19,7 @@ No modules.
 
 | Name | Type |
 | ---- | ---- |
-| [proxmox_virtual_environment_download_file.this](https://registry.terraform.io/providers/bpg/proxmox/0.100.0/docs/resources/virtual_environment_download_file) | resource |
+| [proxmox_virtual_environment_download_file.this](https://registry.terraform.io/providers/bpg/proxmox/0.111.0/docs/resources/virtual_environment_download_file) | resource |
 
 ## Inputs
 
