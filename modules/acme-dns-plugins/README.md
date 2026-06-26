@@ -25,11 +25,11 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 | ---- | ----------- | ---- | ------- | :------: |
-| <a name="input_plugins"></a> [plugins](#input\_plugins) | List of DNS plugins. | <pre>list(object({<br/>    name             = string<br/>    api              = string<br/>    data             = optional(map(string))<br/>    enabled          = optional(bool, true)<br/>    validation_delay = optional(number, 30)<br/>  }))</pre> | `[]` | no |
+| <a name="input_plugins"></a> [plugins](#input\_plugins) | List of DNS plugins. | <pre>list(object({<br/>    id               = string<br/>    api              = string<br/>    data             = optional(map(string))<br/>    data_wo          = optional(map(string))<br/>    data_wo_version  = optional(number)<br/>    digest           = optional(string)<br/>    enabled          = optional(bool, true)<br/>    validation_delay = optional(number, 30)<br/>  }))</pre> | `[]` | no |
 
 ## Outputs
 
 | Name | Description |
 | ---- | ----------- |
-| <a name="output_plugin_names"></a> [plugin\_names](#output\_plugin\_names) | Names of the DNS plugins. |
+| <a name="output_plugin_ids"></a> [plugin\_ids](#output\_plugin\_ids) | IDs of the DNS plugins. |
 <!-- END_TF_DOCS -->
