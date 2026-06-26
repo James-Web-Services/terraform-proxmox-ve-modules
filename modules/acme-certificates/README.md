@@ -25,7 +25,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 | ---- | ----------- | ---- | ------- | :------: |
-| <a name="input_certificates"></a> [certificates](#input\_certificates) | List of certificates to create. | <pre>map(object({<br/>    account = string<br/>    force   = optional(bool, false)<br/><br/>    domains = list(object({<br/>      domain = string<br/>      alias  = optional(string)<br/>      plugin = optional(string)<br/>    }))<br/>  }))</pre> | `{}` | no |
+| <a name="input_certificates"></a> [certificates](#input\_certificates) | Map of certificates to create. | <pre>map(object({<br/>    account = string<br/>    force   = optional(bool, false)<br/><br/>    domains = list(object({<br/>      domain = string<br/>      alias  = optional(string)<br/>      plugin = optional(string)<br/>    }))<br/>  }))</pre> | `{}` | no |
 | <a name="input_node_name"></a> [node\_name](#input\_node\_name) | The Proxmox node name. | `string` | n/a | yes |
 
 ## Outputs

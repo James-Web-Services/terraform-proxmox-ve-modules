@@ -4,7 +4,7 @@ variable "node_name" {
 }
 
 variable "certificates" {
-  description = "List of certificates to create."
+  description = "Map of certificates to create."
 
   type = map(object({
     account = string
