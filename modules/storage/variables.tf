@@ -12,6 +12,8 @@ variable "directory" {
     shared           = optional(bool)
     enabled          = optional(bool, true)
   }))
+
+  default = []
 }
 
 variable "lvm_thin" {
