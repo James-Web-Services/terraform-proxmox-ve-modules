@@ -30,5 +30,7 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+| ---- | ----------- |
+| <a name="output_ids"></a> [ids](#output\_ids) | IDs of the ACME certificates. |
 <!-- END_TF_DOCS -->

@@ -38,7 +38,7 @@ variable "decompression_algorithm" {
 }
 
 variable "file_name" {
-  description = "The file name of the file. If unset, will be infered from the URL."
+  description = "The file name of the file. If unset, will be inferred from the URL."
   type        = string
   default     = null
 }

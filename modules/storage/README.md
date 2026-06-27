@@ -26,10 +26,13 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 | ---- | ----------- | ---- | ------- | :------: |
-| <a name="input_directory"></a> [directory](#input\_directory) | List of directory storage to create. | <pre>list(object({<br/>    id               = string<br/>    path             = string<br/>    content          = optional(list(string))<br/>    create_base_path = optional(bool)<br/>    create_subdirs   = optional(bool)<br/>    nodes            = optional(list(string))<br/>    preallocation    = optional(string)<br/>    shared           = optional(bool)<br/>    enabled          = optional(bool, true)<br/>  }))</pre> | n/a | yes |
+| <a name="input_directory"></a> [directory](#input\_directory) | List of directory storage to create. | <pre>list(object({<br/>    id               = string<br/>    path             = string<br/>    content          = optional(list(string))<br/>    create_base_path = optional(bool)<br/>    create_subdirs   = optional(bool)<br/>    nodes            = optional(list(string))<br/>    preallocation    = optional(string)<br/>    shared           = optional(bool)<br/>    enabled          = optional(bool, true)<br/>  }))</pre> | `[]` | no |
 | <a name="input_lvm_thin"></a> [lvm\_thin](#input\_lvm\_thin) | List of LVM-thin storage to create. | <pre>list(object({<br/>    id           = string<br/>    thin_pool    = string<br/>    volume_group = string<br/>    content      = optional(list(string))<br/>    nodes        = optional(list(string))<br/>    enabled      = optional(bool, true)<br/>  }))</pre> | `[]` | no |
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+| ---- | ----------- |
+| <a name="output_directory_ids"></a> [directory\_ids](#output\_directory\_ids) | IDs of the directory storage. |
+| <a name="output_lvm_thin_ids"></a> [lvm\_thin\_ids](#output\_lvm\_thin\_ids) | IDs of the LVM thin storage. |
 <!-- END_TF_DOCS -->

@@ -10,5 +10,5 @@ output "user_passwords" {
 output "user_tokens" {
   description = "User tokens."
   sensitive   = true
-  value       = try(proxmox_user_token.this[*].value, null)
+  value       = { for k, v in proxmox_user_token.this : k => v.value }
 }
