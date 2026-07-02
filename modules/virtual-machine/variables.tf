@@ -89,7 +89,7 @@ variable "disk_size" {
 variable "disk_interface" {
   description = "The name of the root disk interface."
   type        = string
-  default     = "virtio0"
+  default     = "scsi0"
 }
 
 variable "disk_iothread_enabled" {
@@ -102,6 +102,20 @@ variable "disk_discard_enabled" {
   description = "Whether to enable disard on the disk."
   type        = bool
   default     = true
+}
+
+variable "additional_disks" {
+  description = "Map of additional disks to add to the virtual machine."
+
+  type = map(object({
+    datastore_id = string
+    size         = number
+    interface    = string
+    iothread     = optional(bool, true)
+    discard      = optional(bool, true)
+  }))
+
+  default = {}
 }
 
 variable "agent_enabled" {
@@ -206,6 +220,18 @@ variable "ssh_authorized_keys" {
   description = "List of SSH public keys."
   type        = list(string)
   default     = null
+}
+
+variable "create_serial_device" {
+  description = "Whether to create a serial device. Required for cloud-init to work."
+  type        = bool
+  default     = true
+}
+
+variable "custom_user_cloud_init_enabled" {
+  description = "Whether to enable custom user cloud-init snippet file."
+  type        = bool
+  default     = true
 }
 
 variable "custom_user_cloud_init" {

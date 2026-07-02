@@ -3,18 +3,22 @@
 # Cloud-init
 ################################################################
 resource "random_string" "cloud_init" {
+  count = var.custom_user_cloud_init_enabled ? 1 : 0
+
   length  = 8
   upper   = false
   special = false
 }
 
 resource "proxmox_virtual_environment_file" "user_cloud_init" {
+  count = var.custom_user_cloud_init_enabled ? 1 : 0
+
   datastore_id = var.snippets_datastore_id
   node_name    = var.node_name
   content_type = "snippets"
 
   source_raw {
-    file_name = "${random_string.cloud_init.result}.user-cloud-init.yml"
+    file_name = "${random_string.cloud_init[0].result}.user-cloud-init.yml"
 
     data = <<-EOF
 #cloud-config
@@ -71,8 +75,11 @@ resource "proxmox_virtual_environment_vm" "this" {
     }
   }
 
-  # Required for cloud-init to work.
-  serial_device {}
+  dynamic "serial_device" {
+    for_each = var.create_serial_device ? [1] : []
+
+    content {}
+  }
 
   cpu {
     cores = var.cpu_cores
@@ -98,6 +105,18 @@ resource "proxmox_virtual_environment_vm" "this" {
     interface    = var.disk_interface
     iothread     = var.disk_iothread_enabled
     discard      = var.disk_discard_enabled ? "on" : "ignore"
+  }
+
+  dynamic "disk" {
+    for_each = var.additional_disks
+
+    content {
+      datastore_id = disk.value.datastore_id
+      size         = disk.value.size
+      interface    = disk.value.interface
+      iothread     = disk.value.iothread
+      discard      = disk.value.discard ? "on" : "ignore"
+    }
   }
 
   dynamic "hostpci" {
@@ -140,7 +159,7 @@ resource "proxmox_virtual_environment_vm" "this" {
 
   initialization {
     datastore_id      = var.disk_datastore_id
-    user_data_file_id = proxmox_virtual_environment_file.user_cloud_init.id
+    user_data_file_id = try(proxmox_virtual_environment_file.user_cloud_init[0].id, null)
 
     ip_config {
       ipv4 {
