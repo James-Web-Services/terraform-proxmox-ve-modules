@@ -29,5 +29,5 @@ output "mac_address" {
 
 output "user_cloud_init_snippet_file_name" {
   description = "The file name of the user cloud-init snippet."
-  value       = proxmox_virtual_environment_file.user_cloud_init.file_name
+  value       = try(proxmox_virtual_environment_file.user_cloud_init[0].file_name, null)
 }

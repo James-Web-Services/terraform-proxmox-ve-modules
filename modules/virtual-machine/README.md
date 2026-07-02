@@ -33,14 +33,17 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 | ---- | ----------- | ---- | ------- | :------: |
+| <a name="input_additional_disks"></a> [additional\_disks](#input\_additional\_disks) | Map of additional disks to add to the virtual machine. | <pre>map(object({<br/>    datastore_id = string<br/>    size         = number<br/>    interface    = string<br/>    iothread     = optional(bool, true)<br/>    discard      = optional(bool, true)<br/>  }))</pre> | `{}` | no |
 | <a name="input_agent_enabled"></a> [agent\_enabled](#input\_agent\_enabled) | Whether to enable the QEMU guest agent. | `bool` | `true` | no |
 | <a name="input_bios"></a> [bios](#input\_bios) | The BIOS type. | `string` | `"seabios"` | no |
 | <a name="input_cpu_cores"></a> [cpu\_cores](#input\_cpu\_cores) | The number of CPU cores to assign. | `number` | n/a | yes |
 | <a name="input_cpu_type"></a> [cpu\_type](#input\_cpu\_type) | The CPU type. | `string` | `"x86-64-v2-AES"` | no |
+| <a name="input_create_serial_device"></a> [create\_serial\_device](#input\_create\_serial\_device) | Whether to create a serial device. Required for cloud-init to work. | `bool` | `true` | no |
 | <a name="input_custom_user_cloud_init"></a> [custom\_user\_cloud\_init](#input\_custom\_user\_cloud\_init) | Custom user cloud-init in HCL format to be merged with the defaults. | `any` | `{}` | no |
+| <a name="input_custom_user_cloud_init_enabled"></a> [custom\_user\_cloud\_init\_enabled](#input\_custom\_user\_cloud\_init\_enabled) | Whether to enable custom user cloud-init snippet file. | `bool` | `true` | no |
 | <a name="input_disk_datastore_id"></a> [disk\_datastore\_id](#input\_disk\_datastore\_id) | The datastore ID for the virtual machine disk. | `string` | `"local-lvm"` | no |
 | <a name="input_disk_discard_enabled"></a> [disk\_discard\_enabled](#input\_disk\_discard\_enabled) | Whether to enable disard on the disk. | `bool` | `true` | no |
-| <a name="input_disk_interface"></a> [disk\_interface](#input\_disk\_interface) | The name of the root disk interface. | `string` | `"virtio0"` | no |
+| <a name="input_disk_interface"></a> [disk\_interface](#input\_disk\_interface) | The name of the root disk interface. | `string` | `"scsi0"` | no |
 | <a name="input_disk_iothread_enabled"></a> [disk\_iothread\_enabled](#input\_disk\_iothread\_enabled) | Whether to enable iothread on the disk. | `bool` | `true` | no |
 | <a name="input_disk_size"></a> [disk\_size](#input\_disk\_size) | The size of the root disk (in GiB). | `number` | n/a | yes |
 | <a name="input_dns_domain"></a> [dns\_domain](#input\_dns\_domain) | The DNS domain. | `string` | `null` | no |
